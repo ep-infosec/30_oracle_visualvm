@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (c) 1997, 2018, Oracle and/or its affiliates. All rights reserved.
+DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+
+This code is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License version 2 only, as
+published by the Free Software Foundation.  Oracle designates this
+particular file as subject to the "Classpath" exception as provided
+by Oracle in the LICENSE file that accompanied this code.
+
+This code is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+version 2 for more details (a copy is included in the LICENSE file that
+accompanied this code).
+
+You should have received a copy of the GNU General Public License version
+2 along with this work; if not, write to the Free Software Foundation,
+Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+
+Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
+or visit www.oracle.com if you need additional information or have any
+questions.
+-->
+<project basedir="." default="netbeans" name="lib.profiler">
+    <description>Builds, tests, and runs the project org.graalvm.visualvm.lib.jfluid</description>
+    <import file="nbproject/build-impl.xml"/>
+
+  <!-- Compile the JFluid engine system library, that depends on JDK version - so there are two libraries -->
+  <!-- Compile the engine system library -->
+    <target name="compile-system" depends="init">
+        <mkdir dir="${build15.classes.dir}"/>
+        <javac srcdir="${src15.dir}" destdir="${build15.classes.dir}" debug="${build.compiler.debug}" debuglevel="${build.compiler.debuglevel}" encoding="UTF-8"
+                deprecation="${build.compiler.deprecation}" optimize="${build.compiler.optimize}" source="1.5" target="1.5" includeantruntime="false">
+            <include name="org/graalvm/visualvm/lib/jfluid/server/system/**"/>
+            <compilerarg line="${javac.compilerargs}"/>
+        </javac>
+        <mkdir dir="${build.classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.classes.dir}" debug="${build.compiler.debug}" debuglevel="${build.compiler.debuglevel}" encoding="UTF-8"
+                classpath="${build15.classes.dir}" deprecation="${build.compiler.deprecation}" optimize="${build.compiler.optimize}" source="1.4" target="1.4" includeantruntime="false">
+            <include name="org/graalvm/visualvm/lib/jfluid/server/**"/>
+            <include name="org/graalvm/visualvm/lib/jfluid/global/**"/>
+            <include name="org/graalvm/visualvm/lib/jfluid/wireprotocol/**"/>
+            <compilerarg line="${javac.compilerargs}"/>
+        </javac>
+    </target>
+
+    <target name="post-compile" depends="projectized-common.compile">
+        <javac srcdir="${src15.dir}" destdir="${build15.classes.dir}" debug="${build.compiler.debug}" debuglevel="${build.compiler.debuglevel}" encoding="UTF-8"
+                classpath="${build.classes.dir}" deprecation="${build.compiler.deprecation}" optimize="${build.compiler.optimize}" source="1.5" target="1.5" includeantruntime="false">
+            <compilerarg line="${javac.compilerargs}"/>
+        </javac>
+    </target>
+
+    <target name="compile" depends="init,compile-system, projectized-common.compile,post-compile"/>
+
+    <target name="jar" depends="init,compile,jar-prep">
+        <!-- Client side -->
+        <jarwithmoduleattributes jarfile="${cluster}/${module.jar}" compress="${build.package.compress}" index="${build.package.index}" manifest="${manifest.mf}" stamp="${cluster}/.lastModified">
+            <fileset dir="${build.classes.dir}">
+              <exclude name="org/graalvm/visualvm/lib/jfluid/server/**"/>
+            </fileset>
+        </jarwithmoduleattributes>
+        
+       <!-- Server side -->
+       <mkdir dir="${cluster}/lib"/>
+       <jar destfile="${cluster}/${jfluid.server.jar}"
+         basedir="${build.classes.dir}"
+         includes="org/graalvm/visualvm/lib/jfluid/server/** org/graalvm/visualvm/lib/jfluid/global/** org/graalvm/visualvm/lib/jfluid/wireprotocol/**"
+         compress="false">
+       </jar>
+       <jar destfile="${cluster}/${jfluid.server.15.jar}"
+         manifest="${src15.dir}/manifest.mf"
+         basedir="${build15.classes.dir}"
+         compress="false">
+       </jar>
+    </target>
+
+    <target name="release" depends="projectized-common.release">
+        <fixcrlf eol="crlf" srcdir="${cluster}/lib/deployed" includes="**/*.map"/>
+    </target>
+
+</project>

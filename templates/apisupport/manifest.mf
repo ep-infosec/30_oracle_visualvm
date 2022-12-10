@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.graalvm.visualvm.apisupport
+OpenIDE-Module-Layer: org/graalvm/visualvm/apisupport/layer.xml
+OpenIDE-Module-Localizing-Bundle: org/graalvm/visualvm/apisupport/Bundle.properties
+

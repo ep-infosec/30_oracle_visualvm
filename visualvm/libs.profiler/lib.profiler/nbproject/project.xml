@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (c) 1997, 2021, Oracle and/or its affiliates. All rights reserved.
+DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+
+This code is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License version 2 only, as
+published by the Free Software Foundation.  Oracle designates this
+particular file as subject to the "Classpath" exception as provided
+by Oracle in the LICENSE file that accompanied this code.
+
+This code is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+version 2 for more details (a copy is included in the LICENSE file that
+accompanied this code).
+
+You should have received a copy of the GNU General Public License version
+2 along with this work; if not, write to the Free Software Foundation,
+Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+
+Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
+or visit www.oracle.com if you need additional information or have any
+questions.
+-->
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.apisupport.project</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/nb-module-project/3">
+            <code-name-base>org.graalvm.visualvm.lib.jfluid</code-name-base>
+            <suite-component/>
+            <module-dependencies/>
+            <test-dependencies>
+                <test-type>
+                    <name>unit</name>
+                    <test-dependency>
+                        <code-name-base>org.netbeans.libs.junit4</code-name-base>
+                        <compile-dependency/>
+                    </test-dependency>
+                    <test-dependency>
+                        <code-name-base>org.netbeans.modules.nbjunit</code-name-base>
+                        <recursive/>
+                        <compile-dependency/>
+                    </test-dependency>
+                </test-type>
+                <test-type>
+                    <name>qa-functional</name>
+                    <test-dependency>
+                        <code-name-base>org.netbeans.libs.junit4</code-name-base>
+                        <compile-dependency/>
+                    </test-dependency>
+                    <test-dependency>
+                        <code-name-base>org.netbeans.modules.nbjunit</code-name-base>
+                        <recursive/>
+                        <compile-dependency/>
+                    </test-dependency>
+                </test-type>
+            </test-dependencies>
+            <friend-packages>
+                <friend>org.graalvm.visualvm.application.views</friend>
+                <friend>org.graalvm.visualvm.core</friend>
+                <friend>org.graalvm.visualvm.heapdump</friend>
+                <friend>org.graalvm.visualvm.heapviewer</friend>
+                <friend>org.graalvm.visualvm.heapviewer.truffle</friend>
+                <friend>org.graalvm.visualvm.jfr</friend>
+                <friend>org.graalvm.visualvm.jfr.streaming</friend>
+                <friend>org.graalvm.visualvm.lib.common</friend>
+                <friend>org.graalvm.visualvm.lib.profiler</friend>
+                <friend>org.graalvm.visualvm.lib.profiler.api</friend>
+                <friend>org.graalvm.visualvm.lib.profiler.attach</friend>
+                <friend>org.graalvm.visualvm.lib.profiler.heapwalker</friend>
+                <friend>org.graalvm.visualvm.lib.profiler.oql</friend>
+                <friend>org.graalvm.visualvm.lib.profiler.snaptracer</friend>
+                <friend>org.graalvm.visualvm.lib.ui</friend>
+                <friend>org.graalvm.visualvm.modules.appui</friend>
+                <friend>org.graalvm.visualvm.profiler</friend>
+                <friend>org.graalvm.visualvm.profiling</friend>
+                <friend>org.graalvm.visualvm.sampler</friend>
+                <friend>org.graalvm.visualvm.sampler.truffle</friend>
+                <package>org.graalvm.visualvm.lib.jfluid</package>
+                <package>org.graalvm.visualvm.lib.jfluid.classfile</package>
+                <package>org.graalvm.visualvm.lib.jfluid.client</package>
+                <package>org.graalvm.visualvm.lib.jfluid.filters</package>
+                <package>org.graalvm.visualvm.lib.jfluid.global</package>
+                <package>org.graalvm.visualvm.lib.jfluid.instrumentation</package>
+                <package>org.graalvm.visualvm.lib.jfluid.jps</package>
+                <package>org.graalvm.visualvm.lib.jfluid.marker</package>
+                <package>org.graalvm.visualvm.lib.jfluid.results</package>
+                <package>org.graalvm.visualvm.lib.jfluid.results.coderegion</package>
+                <package>org.graalvm.visualvm.lib.jfluid.results.cpu</package>
+                <package>org.graalvm.visualvm.lib.jfluid.results.cpu.cct</package>
+                <package>org.graalvm.visualvm.lib.jfluid.results.cpu.cct.nodes</package>
+                <package>org.graalvm.visualvm.lib.jfluid.results.cpu.marking</package>
+                <package>org.graalvm.visualvm.lib.jfluid.results.jdbc</package>
+                <package>org.graalvm.visualvm.lib.jfluid.results.locks</package>
+                <package>org.graalvm.visualvm.lib.jfluid.results.memory</package>
+                <package>org.graalvm.visualvm.lib.jfluid.results.monitor</package>
+                <package>org.graalvm.visualvm.lib.jfluid.results.threads</package>
+                <package>org.graalvm.visualvm.lib.jfluid.utils</package>
+                <package>org.graalvm.visualvm.lib.jfluid.utils.formatting</package>
+                <package>org.graalvm.visualvm.lib.jfluid.wireprotocol</package>
+            </friend-packages>
+            <extra-compilation-unit>
+                <package-root>${src15.dir}</package-root>
+                <classpath>${build.classes.dir}</classpath>
+                <built-to>${build15.classes.dir}</built-to>
+                <built-to>${cluster}/${jfluid.server.15.jar}</built-to>
+            </extra-compilation-unit>
+            <extra-compilation-unit>
+                <package-root>${srccvm.dir}</package-root>
+                <classpath/>
+                <built-to>${buildcvm.classes.dir}</built-to>
+                <built-to>${cluster}/${jfluid.server.cvm.jar}</built-to>
+            </extra-compilation-unit>
+        </data>
+    </configuration>
+</project>
